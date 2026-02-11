@@ -9,6 +9,10 @@
     <%= render link %>
     <p>
       <%= link_to "Show this link", link %>
+      <% if link.user == current_user %>
+      <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "are u sure" }%>
+      <%= link_to "Edit", edit_link_path(link) %>
+      <% end %>
     </p>
   <% end %>
 </div>
