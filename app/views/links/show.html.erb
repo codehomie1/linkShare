@@ -1,10 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @link.title %>
 
-<%= render @link %>
+<div class="page">
+  <% if notice.present? %>
+    <p class="flash flash--notice"><%= notice %></p>
+  <% end %>
 
-<div>
-  <%= link_to "Edit this link", edit_link_path(@link) %> |
-  <%= link_to "Back to links", links_path %>
+  <header class="page-header">
+    <h1 class="page-title"><%= @link.title %></h1>
+    <div class="page-actions">
+      <%= link_to "Visit link", @link.url, target: "_blank", rel: "noopener", class: "btn btn--primary" %>
+      <% if @link.user == current_user %>
+        <%= link_to "Edit", edit_link_path(@link), class: "btn btn--ghost" %>
+        <%= button_to "Delete", @link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "inline-form" }, class: "btn btn--danger" %>
+      <% end %>
+    </div>
+  </header>
 
-  <%= button_to "Destroy this link", @link, method: :delete %>
+  <div class="link-detail card">
+    <p class="link-detail__url">
+      <%= link_to @link.url, @link.url, target: "_blank", rel: "noopener", class: "link-detail__url-link" %>
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <%= link_to "← Back to links", links_path, class: "btn btn--ghost" %>
+  </div>
 </div>

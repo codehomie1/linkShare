@@ -1,9 +1,8 @@
-<%= form_with(model: link) do |form| %>
+<%= form_with(model: link, class: "form") do |form| %>
   <% if link.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
-
-      <ul>
+    <div class="form-errors">
+      <h3 class="form-errors__title"><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h3>
+      <ul class="form-errors__list">
         <% link.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,17 +10,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-input", placeholder: "Link title" %>
   </div>
 
-  <div>
-    <%= form.label :url, style: "display: block" %>
-    <%= form.text_field :url %>
+  <div class="form-group">
+    <%= form.label :url, class: "form-label" %>
+    <%= form.url_field :url, class: "form-input", placeholder: "https://..." %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit class: "btn btn--primary" %>
   </div>
 <% end %>

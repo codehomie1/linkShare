@@ -1,11 +1,12 @@
 <% content_for :title, "New link" %>
 
-<h1>New link</h1>
+<div class="page">
+  <header class="page-header">
+    <h1 class="page-title">New link</h1>
+    <%= link_to "← Back to links", links_path, class: "btn btn--ghost" %>
+  </header>
 
-<%= render "form", link: @link %>
-
-<br>
-
-<div>
-  <%= link_to "Back to links", links_path %>
+  <div class="card">
+    <%= render "form", link: @link %>
+  </div>
 </div>

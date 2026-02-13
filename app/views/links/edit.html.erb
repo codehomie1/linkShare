@@ -1,12 +1,16 @@
 <% content_for :title, "Editing link" %>
 
-<h1>Editing link</h1>
+<div class="page">
+  <header class="page-header">
+    <h1 class="page-title">Editing link</h1>
+    <%= link_to "← Back to links", links_path, class: "btn btn--ghost" %>
+  </header>
 
-<%= render "form", link: @link %>
+  <div class="card">
+    <%= render "form", link: @link %>
+  </div>
 
-<br>
-
-<div>
-  <%= link_to "Show this link", @link %> |
-  <%= link_to "Back to links", links_path %>
+  <div class="page-footer">
+    <%= link_to "Show this link", @link, class: "btn btn--ghost" %>
+  </div>
 </div>

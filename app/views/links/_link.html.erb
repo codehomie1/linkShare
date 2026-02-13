@@ -1,12 +1,8 @@
-<div id="<%= dom_id link %>">
-  <p>
-    <strong>Title:</strong>
-    <%= link.title %>
+<div class="link-card__content">
+  <h3 class="link-card__title">
+    <%= link_to link.title, link.url, target: "_blank", rel: "noopener", class: "link-card__title-link" %>
+  </h3>
+  <p class="link-card__url">
+    <%= link_to link.url, link.url, target: "_blank", rel: "noopener", class: "link-card__url-link" %>
   </p>
-
-  <p>
-    <strong>Url:</strong>
-    <%= link.url %>
-  </p>
-
 </div>

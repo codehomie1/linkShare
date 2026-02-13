@@ -1,20 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Links" %>
 
-<h1>Links</h1>
-
-<div id="links">
-  <% @links.each do |link| %>
-    <%= render link %>
-    <p>
-      <%= link_to "Show this link", link %>
-      <% if link.user == current_user %>
-      <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "are u sure" }%>
-      <%= link_to "Edit", edit_link_path(link) %>
-      <% end %>
-    </p>
+<div class="page">
+  <% if notice.present? %>
+    <p class="flash flash--notice"><%= notice %></p>
   <% end %>
-</div>
 
-<%= link_to "New link", new_link_path %>
+  <header class="links-header">
+    <h1 class="links-title">Links</h1>
+    <%= link_to "New link", new_link_path, class: "btn btn--primary" %>
+  </header>
+
+  <ul class="links-list" id="links">
+    <% @links.each do |link| %>
+      <li class="link-card" id="<%= dom_id link %>">
+        <%= render link %>
+        <div class="link-card__actions">
+          <%= link_to "View", link, class: "btn btn--ghost" %>
+          <% if link.user == current_user %>
+            <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
+            <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "link-card__delete-form" }, class: "btn btn--danger" %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
