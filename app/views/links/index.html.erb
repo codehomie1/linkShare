@@ -17,6 +17,7 @@
             <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
             <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "link-card__delete-form" }, class: "btn btn--danger" %>
           <% end %>
+          <a href="<%= link.url %>" target="_blank">Go to Link</a>
           <% if current_user.liked? link %>
             <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put %>
           <% else %>
