@@ -16,7 +16,6 @@
           <% if current_user.present? %>
             <% if link.user == current_user %>
               <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
-            <%else%>
               <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "link-card__delete-form" }, class: "btn btn--danger" %>
             <% end %>
           <% end %>
@@ -28,8 +27,9 @@
               <%= button_to 'like', like_link_path(link, do: 'like'), method: :put %>
             <% end %>
           <% end %>
+          <%= link.get_upvotes.size %>
+          <br>
         </div>
-        <%= link.get_upvotes.size %>
         <small> Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
       </li>
     <% end %>
