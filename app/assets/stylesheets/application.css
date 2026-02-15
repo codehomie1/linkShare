@@ -133,6 +133,46 @@ body {
   margin: 0;
 }
 
+/* Vote counts (likes / dislikes) */
+.link-card__votes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.link-card__votes .btn,
+.link-card__votes form {
+  margin: 0;
+}
+
+.vote-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.vote-count--up {
+  color: #15803d;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.vote-count--down {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;

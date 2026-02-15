@@ -11,8 +11,10 @@
     <% @links.each do |link| %>
       <li class="link-card" id="<%= dom_id link %>">
         <%= render link %>
+        
         <div class="link-card__actions">
           <%= link_to "View", link, class: "btn btn--ghost" %>
+
           <% if current_user.present? %>
             <% if link.user == current_user %>
               <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
@@ -20,15 +22,26 @@
             <% end %>
           <% end %>
           <a href="<%= link.url %>" target="_blank">Go to Link</a>
-          <% if current_user.present? %>
-            <% if current_user.liked? link%>
-              <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put %>
-            <% else %>
-              <%= button_to 'like', like_link_path(link, do: 'like'), method: :put %>
+
+          <span class="link-card__votes">
+            <% if current_user.present? %>
+              <% if current_user.liked? link%>
+                <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put, class: "btn btn--ghost" %>
+              <% else %>
+                <%= button_to 'like', like_link_path(link, do: 'like'), method: :put, class: "btn btn--ghost" %>
+              <% end %>
             <% end %>
-          <% end %>
-          <%= link.get_upvotes.size %>
-          <br>
+            <span class="vote-count vote-count--up" title="Likes"><%= link.get_upvotes.size %></span>
+
+            <% if current_user.present? %>
+              <% if current_user.disliked? link%>
+                <%= button_to 'undislike', dislike_link_path(link, do: 'undislike'), method: :put, class: "btn btn--ghost" %>
+              <% else %>
+                <%= button_to 'dislike', dislike_link_path(link, do: 'dislike'), method: :put, class: "btn btn--ghost" %>
+              <% end %>
+            <% end %>
+            <span class="vote-count vote-count--down" title="Dislikes"><%= link.get_downvotes.size %></span>
+          </span>
         </div>
         <small> Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
       </li>
