@@ -10,7 +10,17 @@ class LinksController < ApplicationController
     elsif params[:do] == 'unlike'
       @link.unliked_by current_user
     end
-      redirect_back fallback_location: root_path
+    redirect_back fallback_location: root_path
+  end
+
+  def dislike
+    @link = Link.find(params[:id])
+    if params[:do] == 'dislike'
+      @link.disliked_by current_user
+    elsif params[:do] == 'undislike'
+      @link.undisliked_by current_user
+    end
+    redirect_back fallback_location: root_path
   end
 
   # GET /links or /links.json
