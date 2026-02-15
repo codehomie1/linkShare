@@ -2,6 +2,17 @@ class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
 
+
+  def like
+    @link = Link.find(params[:id])
+    if params[:do] == 'like'
+      @link.liked_by current_user
+    elsif params[:do] == 'unlike'
+      @link.unliked_by current_user
+    end
+      redirect_back fallback_location: root_path
+  end
+
   # GET /links or /links.json
   def index
     @links = Link.all

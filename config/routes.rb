@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :links
+  resources :links do 
+    member do 
+      put 'like' => 'links#like'
+    end
+  end
   root "links#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

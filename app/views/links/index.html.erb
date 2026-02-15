@@ -1,15 +1,12 @@
 <% content_for :title, "Links" %>
-
 <div class="page">
   <% if notice.present? %>
     <p class="flash flash--notice"><%= notice %></p>
   <% end %>
-
   <header class="links-header">
     <h1 class="links-title">Links</h1>
     <%= link_to "New link", new_link_path, class: "btn btn--primary" %>
   </header>
-
   <ul class="links-list" id="links">
     <% @links.each do |link| %>
       <li class="link-card" id="<%= dom_id link %>">
@@ -19,8 +16,15 @@
           <% if link.user == current_user %>
             <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
             <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "link-card__delete-form" }, class: "btn btn--danger" %>
+            <% if current_user.liked? link %>
+              <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put %>
+            <% else %>
+              <%= button_to 'like', like_link_path(link, do: 'like'), method: :put %>
+            <% end %>
+            <%= link.get_upvotes.size %>
           <% end %>
         </div>
+        <small> Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
       </li>
     <% end %>
   </ul>
