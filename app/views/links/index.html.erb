@@ -16,13 +16,13 @@
           <% if link.user == current_user %>
             <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
             <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "link-card__delete-form" }, class: "btn btn--danger" %>
-            <% if current_user.liked? link %>
-              <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put %>
-            <% else %>
-              <%= button_to 'like', like_link_path(link, do: 'like'), method: :put %>
-            <% end %>
-            <%= link.get_upvotes.size %>
           <% end %>
+          <% if current_user.liked? link %>
+            <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put %>
+          <% else %>
+            <%= button_to 'like', like_link_path(link, do: 'like'), method: :put %>
+          <% end %>
+          <%= link.get_upvotes.size %>
         </div>
         <small> Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
       </li>
