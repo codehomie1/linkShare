@@ -18,6 +18,21 @@
       <%= link_to @link.url, @link.url, target: "_blank", rel: "noopener", class: "link-detail__url-link" %>
     </p>
   </div>
+  <section class="comments">
+    <div class="comments__header">
+      <h2 class="comments__title">Comments</h2>
+      <%= link_to "Add comment", new_link_comment_path(@link), class: "btn btn--primary" %>
+    </div>
+    <% if @link.comments.any? %>
+      <ul class="comments-list">
+        <% @link.comments.each do |comment| %>
+          <li><%= render comment %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="comments__empty">No comments yet. Be the first to add one!</p>
+    <% end %>
+  </section>
   <div class="page-footer">
     <%= link_to "← Back to links", links_path, class: "btn btn--ghost" %>
   </div>

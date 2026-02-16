@@ -1,17 +1,6 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>Body:</strong>
-    <%= comment.body %>
-  </p>
-
-  <p>
-    <strong>Link:</strong>
-    <%= comment.link_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
-</div>
+<article class="comment-card" id="<%= dom_id comment %>">
+  <p class="comment-card__body"><%= comment.body %></p>
+  <footer class="comment-card__meta">
+    <%= comment.user == current_user ? "You" : comment.user.email %> · <%= time_ago_in_words(comment.created_at) %> ago
+  </footer>
+</article>
