@@ -1,3 +1,6 @@
+# To initialize a new Link:
+# link = Link.new(title: "Your title", url: "https://example.com", user_id: user.id)
+
 class Link < ApplicationRecord
   belongs_to :user
   acts_as_votable
