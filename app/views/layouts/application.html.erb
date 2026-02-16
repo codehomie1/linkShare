@@ -18,14 +18,21 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <% if user_signed_in? %>
-      <h1>Hello <%= current_user.email %></h1>
-      <%= link_to "Edit Account", edit_user_registration_path %>
-      <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete}%>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %>
-      <%= link_to "Sign in", user_session_path %>
-    <% end %>
+    <nav class="app-nav">
+      <div class="app-nav__brand">
+        <%= link_to "Link Share", root_path, class: "app-nav__logo" %>
+      </div>
+      <div class="app-nav__actions">
+        <% if user_signed_in? %>
+          <span class="app-nav__user">Hello, <%= current_user.email %></span>
+          <%= link_to "Edit Account", edit_user_registration_path, class: "btn btn--ghost" %>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, form: { class: "inline-form" }, class: "btn btn--ghost" %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn--primary" %>
+          <%= link_to "Sign in", user_session_path, class: "btn btn--ghost" %>
+        <% end %>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
