@@ -1,24 +1,65 @@
-# README
+# Link Sharing App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A basic Ruby on Rails app for sharing links, commenting, and voting.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+1. **Requirements:**
+   - Ruby
+   - Rails
+   - SQLite3
 
-* System dependencies
+2. **Setup:**
 
-* Configuration
+   ```
+   bundle install
+   bin/rails db:create db:migrate
+   ```
 
-* Database creation
+3. **Run the App:**
 
-* Database initialization
+   ```
+   bin/rails server
+   ```
 
-* How to run the test suite
+   Visit http://localhost:3000
 
-* Services (job queues, cache servers, search engines, etc.)
+4. **Run Tests:**
+   ```
+   bin/rails test
+   ```
 
-* Deployment instructions
+## Features
 
-* ...
+- User authentication
+- Share links
+- Comment on links
+- Upvote/downvote links
+
+##
+
+## Database Schema
+
+```mermaid
+erDiagram
+    User ||--o{ Link: creates
+    User ||--o{ Comment: creates
+    Link ||--o{ Comment: has
+    User {
+        string id PK
+        string email
+        string password
+    }
+    Link {
+        string id PK
+        string user_id FK
+        string title
+        string url
+    }
+    Comment {
+        string id PK
+        string user_id FK
+        string link_id FK
+        string body
+    }
+```
