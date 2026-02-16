@@ -5,6 +5,6 @@ class Link < ApplicationRecord
   belongs_to :user
   acts_as_votable
   has_many :comments
-  validates :title, presence: true, length: { maximum: 50 }
+  validates :title, presence: true, length: { maximum: 50, minimum: 3 }
   validates :url, presence: true
 end
