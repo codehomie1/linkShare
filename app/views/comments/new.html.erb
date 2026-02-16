@@ -1,7 +1,12 @@
 <% content_for :title, "New comment" %>
-<h1>New comment</h1>
-<%= render "form", comment: @comment, link: @link %>
-<br>
-<div>
-  <%= link_to "Back to comments", link_comments_path(@link) %>
+<div class="page">
+  <header class="page-header">
+    <h1 class="page-title">New Comment</h1>
+  </header>
+  <div class="card card--form">
+    <%= render "form", comment: @comment, link: @link %>
+  </div>
+  <div class="page-footer">
+    <%= link_to "← Back to comments", link_comments_path(@link), class: "btn btn--ghost" %>
+  </div>
 </div>
