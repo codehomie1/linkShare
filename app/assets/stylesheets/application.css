@@ -501,6 +501,11 @@ body {
   opacity: 0.8;
 }
 
+.form-input--textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
 .form-actions {
   padding-top: 0.25rem;
 }

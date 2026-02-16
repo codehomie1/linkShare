@@ -1,19 +1,21 @@
-<%= form_with(model: [link, comment], class: "comment") do |form| %>
+<%= form_with(model: [link, comment], class: "form") do |form| %>
   <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
+    <div class="form-errors">
+      <h3 class="form-errors__title"><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+      <ul class="form-errors__list">
         <% comment.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
+
+  <div class="form-group">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.textarea :body, class: "form-input form-input--textarea", rows: 4, placeholder: "Write your comment..." %>
   </div>
-  <div>
-    <%= form.submit %>
+
+  <div class="form-actions">
+    <%= form.submit "Add comment", class: "btn btn--primary" %>
   </div>
 <% end %>
