@@ -40,7 +40,14 @@
           </span>
         </div>
         <div class="link-card__meta">
-          Submitted <%= time_ago_in_words(link.created_at) %> by <strong class="link-card__author"><%= link.user.email %></strong>
+          Submitted <%= time_ago_in_words(link.created_at) %> by
+          <strong class="link-card__author">
+            <% if current_user.present? && link.user == current_user %>
+              You
+            <% else %>
+              <%= link.user.email %>
+            <% end %>
+          </strong>
         </div>
       </li>
     <% end %>
