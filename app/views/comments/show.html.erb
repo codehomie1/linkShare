@@ -2,6 +2,6 @@
 <%= render @comment %>
 <div>
   <%= link_to "Edit this comment", edit_link_comment_path(@comment) %> |
-  <%= link_to "Back to comments", link_comments_path %>
+  <%= link_to "Back to comments", link_comments_path(@comment.link) %>
   <%= button_to "Destroy this comment", @comment, method: :delete %>
 </div>
