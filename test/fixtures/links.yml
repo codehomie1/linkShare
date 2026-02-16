@@ -9,3 +9,7 @@ two:
   title: MyString
   url: https://example.com
   user: two
+
+three:
+  title:
+  url: https://example.com
