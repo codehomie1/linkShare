@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
-  before_action :set_link, only: %i[ new create ]
+  before_action :set_link, only: %i[ index new create ]
 
   # GET links/:link_id/comments or /comments.json
   def index
-    @comments = Comment.all
+    @comments = @link.comments
   end
 
   # GET links/:link_id/comments/1 or /comments/1.json

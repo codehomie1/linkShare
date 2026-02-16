@@ -3,43 +3,45 @@
   <% if notice.present? %>
     <p class="flash flash--notice"><%= notice %></p>
   <% end %>
+
   <header class="links-header">
     <h1 class="links-title">Links</h1>
     <%= link_to "New link", new_link_path, class: "btn btn--primary" %>
   </header>
-  <ul class="links-list" id="links">
+
+  <ul class="links-list">
     <% @links.each do |link| %>
       <li class="link-card" id="<%= dom_id link %>">
         <%= render link %>
         <div class="link-card__actions">
-          <%= link_to "View", link, class: "btn btn--ghost" %>
-          <% if current_user.present? %>
-            <% if link.user == current_user %>
-              <%= link_to "Edit", edit_link_path(link), class: "btn btn--ghost" %>
-              <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "link-card__delete-form" }, class: "btn btn--danger" %>
-            <% end %>
+          <%= link_to "View", link, class: "btn btn--text" %>
+          <% if current_user.present? && link.user == current_user %>
+            <%= link_to "Edit", edit_link_path(link), class: "btn btn--text btn--text-muted" %>
+            <%= button_to "Delete", link, method: :delete, data: { turbo_confirm: "Are you sure?" }, form: { class: "inline-form" }, class: "btn btn--text btn--danger" %>
           <% end %>
-          <a href="<%= link.url %>" target="_blank">Go to Link</a>
+          <span class="link-card__actions-spacer"></span>
           <span class="link-card__votes">
             <% if current_user.present? %>
-              <% if current_user.liked? link%>
-                <%= button_to 'unlike', like_link_path(link, do: 'unlike'), method: :put, class: "btn btn--ghost" %>
+              <% if current_user.liked? link %>
+                <%= button_to "unlike", like_link_path(link, do: "unlike"), method: :put, class: "btn btn--text btn--success" %>
               <% else %>
-                <%= button_to 'like', like_link_path(link, do: 'like'), method: :put, class: "btn btn--ghost" %>
+                <%= button_to "like", like_link_path(link, do: "like"), method: :put, class: "btn btn--text" %>
               <% end %>
             <% end %>
             <span class="vote-count vote-count--up" title="Likes"><%= link.get_upvotes.size %></span>
             <% if current_user.present? %>
-              <% if current_user.disliked? link%>
-                <%= button_to 'undislike', dislike_link_path(link, do: 'undislike'), method: :put, class: "btn btn--ghost" %>
+              <% if current_user.disliked? link %>
+                <%= button_to "undislike", dislike_link_path(link, do: "undislike"), method: :put, class: "btn btn--text btn--danger" %>
               <% else %>
-                <%= button_to 'dislike', dislike_link_path(link, do: 'dislike'), method: :put, class: "btn btn--ghost" %>
+                <%= button_to "dislike", dislike_link_path(link, do: "dislike"), method: :put, class: "btn btn--text btn--danger" %>
               <% end %>
             <% end %>
             <span class="vote-count vote-count--down" title="Dislikes"><%= link.get_downvotes.size %></span>
           </span>
         </div>
-        <small> Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
+        <div class="link-card__meta">
+          Submitted <%= time_ago_in_words(link.created_at) %> by <strong class="link-card__author"><%= link.user.email %></strong>
+        </div>
       </li>
     <% end %>
   </ul>

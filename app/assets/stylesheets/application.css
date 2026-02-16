@@ -221,6 +221,49 @@ body {
   color: white;
 }
 
+/* Text-style buttons (no border, link-like) */
+.btn--text {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: var(--color-primary);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn--text:hover {
+  text-decoration: underline;
+}
+
+.btn--text.btn--text-muted {
+  color: var(--color-text-muted);
+}
+
+.btn--text.btn--success {
+  color: #15803d;
+}
+
+.btn--text.btn--danger {
+  color: var(--color-danger);
+}
+
+.link-card__actions-spacer {
+  flex: 1 1 100%;
+  height: 0;
+}
+
+.link-card__meta {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.link-card__author {
+  color: #285280;
+}
+
 /* Shared page layout (show, edit, new) */
 .page {
   max-width: 640px;

@@ -7,11 +7,7 @@
   <% end %>
   <% @comments.each do |comment| %>
     <%= render comment %>
-    <p>
-      <%= link_to "Show this comment", link_comments_path %>
-    </p>
   <% end %>
 </div>
 <%= link_to "New comment", new_link_comment_path %>
-<br>
-<%= link_to "Back to Links", links_path %>
+<%= link_to "Back to Link", @comments.first.link %>
