@@ -440,6 +440,30 @@ body {
   color: var(--color-text-muted);
 }
 
+.comments__add {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.comments__add-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 0.75rem 0;
+}
+
+.comments__sign-in-prompt {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.comments__sign-in-prompt .btn {
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
 /* Forms */
 .form {
   display: flex;
@@ -504,6 +528,19 @@ body {
 .form-input--textarea {
   min-height: 6rem;
   resize: vertical;
+}
+
+.form-input--textarea-sm {
+  min-height: 4rem;
+  font-size: 0.9375rem;
+}
+
+.form--compact .form-group {
+  margin-bottom: 0;
+}
+
+.form--compact .form-actions {
+  padding-top: 0.5rem;
 }
 
 .form-actions {

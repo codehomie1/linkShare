@@ -21,17 +21,26 @@
   <section class="comments">
     <div class="comments__header">
       <h2 class="comments__title">Comments</h2>
-      <%= link_to "Add comment", new_link_comment_path(@link), class: "btn btn--primary" %>
     </div>
     <% if @link.comments.any? %>
       <ul class="comments-list">
-        <% @link.comments.each do |comment| %>
+        <% @link.comments.order(created_at: :desc).each do |comment| %>
           <li><%= render comment %></li>
         <% end %>
       </ul>
     <% else %>
       <p class="comments__empty">No comments yet. Be the first to add one!</p>
     <% end %>
+    <div class="comments__add">
+      <% if user_signed_in? %>
+        <h3 class="comments__add-title">Add a comment</h3>
+        <%= render "comments/smallform" %>
+      <% else %>
+        <p class="comments__sign-in-prompt">
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn--primary" %> to add a comment.
+        </p>
+      <% end %>
+    </div>
   </section>
   <div class="page-footer">
     <%= link_to "← Back to links", links_path, class: "btn btn--ghost" %>
