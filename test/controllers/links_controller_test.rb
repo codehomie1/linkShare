@@ -3,10 +3,17 @@ require "test_helper"
 class LinksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @link = links(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
     get links_url
+    assert_response :success
+  end
+
+
+  test "should show link" do
+    get link_url(@link)
     assert_response :success
   end
 
@@ -21,11 +28,6 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to link_url(Link.last)
-  end
-
-  test "should show link" do
-    get link_url(@link)
-    assert_response :success
   end
 
   test "should get edit" do
@@ -44,5 +46,32 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to links_url
+  end
+
+  test "create and view link" do
+    get new_link_url
+    assert_response :success
+
+    post links_url, params: { link: { title: "this is title", url: "www.example.com " } }
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+  end
+
+  test "links header" do
+    get links_url
+    assert_select "h1", "Links"
+  end
+
+  test "no form on index" do
+    get links_url
+    assert_select "form", true
+  end
+
+  test "form input name" do
+    get new_link_url          # -> links#new
+    assert_select "form input" do
+      assert_select "[name]"  # Not empty
+    end
   end
 end

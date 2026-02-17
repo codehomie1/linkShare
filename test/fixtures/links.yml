@@ -1,16 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  url: https://example.com
+  title: this is my title
+  url: wwww.example.com
   user: one
 
-two:
-  title: MyString
-  url: https://example.com
-  user: two
+linkOne:
+  title: hey dude
+  url: mysite.com
+  user: one
 
-three:
-  title:
-  url: https://example.com
+linkTwo:
+  title: myTitle
+  url: anothersite.com
   user: one
